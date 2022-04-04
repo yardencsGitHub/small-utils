@@ -25,9 +25,10 @@ function [p,h] = binomial_bootstrap(n1,k1,n2,k2,varargin)
     bootstrap_temp = [];
     for nb = 1:n_bootstrap
         newvec = origvec(randperm(n1+n2));
-        newp1 = sum(newvec(1:n1))/n1; newp2 = sum(newvec(n1+1:end))/n2;
+        newp1 = sum(newvec(1:n1))/n1; newp2 = sum(newvec((n1+1):end))/n2;
         bootstrap_temp = [bootstrap_temp; newp1-newp2];
     end
+    p1 = k1/n1; p2 = k2/n2;
     switch tail
         case 'right'
             p = mean(bootstrap_temp > p1-p2);
