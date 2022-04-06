@@ -1,7 +1,0 @@
-function newdists = distribution_bootstrap_one_sample(p_vec,n_samples,n_bootstrap)
-% This returns n_bootstrap samples from a finite distribution of labels
-    cump = [0 cumsum(p_vec)];
-    r = rand(1,nrep);
-    [n,x] = hist([1:numel(p)]*(diff(sign(r-cump'))==-2),1:numel(p));
-    
-end
