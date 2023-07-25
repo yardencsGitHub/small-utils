@@ -1,7 +1,6 @@
 #%%
 import torch
 import torchmetrics
-import vak
 # %%
 import numpy as np
 def levenshtein(source, target):
@@ -56,6 +55,52 @@ def levenshtein(source, target):
         d0, d1 = d1, d0
     return d0[-1]
 # %%
-levenshtein("Cat", "Bat")
-
+def segment_error_rate(y_pred, y_true):
+    """Levenshtein edit distance normalized by length of true sequence.
+    Also known as word error distance; here applied to other vocalizations
+    in addition to speech.
+    Parameters
+    ----------
+    y_pred : str
+    predicted labels for a series of songbird syllables
+    y_true : str
+    ground truth labels for a series of songbird syllables
+    Returns
+    -------
+    Levenshtein distance / len(y_true)
+    """
+    if type(y_true) != str or type(y_pred) != str:
+        raise TypeError("Both `y_true` and `y_pred` must be of type `str")
+    # handle divide by zero edge cases
+    if len(y_true) == 0 and len(y_pred) == 0:
+        return 0.
+    elif len(y_true) == 0 and len(y_pred) != 0:
+        raise ValueError(f'segment error rate is undefined when length of y_true is zero')
+    return levenshtein(y_pred, y_true) / len(y_true)
 # %%
+segment_error_rate("Cat", "Bat")
+# %%
+LEV_PARAMETRIZE = [
+# adapted from https://github.com/toastdriven/pylev/blob/master/tests.py
+    ("kitten", "sitting", 3),
+    ("kitten", "kitten", 0),
+    ("", "", 0),
+    ("kitten", "", 6),
+    ("", "sitting", 7),
+    ("meilenstein", "levenshtein", 4),
+    ("levenshtein", "frankenstein", 6),
+    ("confide", "deceit", 6),
+    ("CUNsperrICY", "conspiracy", 8),
+    # case added to catch failure with our previous implementation from
+    # https://en.wikibooks.org/wiki/Talk:Algorithm_Implementation/Strings/Levenshtein_('aabcc', 'bccdd', 4),
+]
+# %%
+char_err = torchmetrics.CharErrorRate()
+# %%
+for source, target, expected in LEV_PARAMETRIZE:
+    cer = char_err(source, target)
+    if len(target) == 0 and len(source) != 0:
+        ser = 'value error'
+    else:
+        ser = segment_error_rate(source, target)
+    print(f'source: {source}, target: {target}\n\tvak: {ser}, torchmetrics: {cer}')

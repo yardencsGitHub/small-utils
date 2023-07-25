@@ -1,4 +1,4 @@
-function res = return_phrase_times(element)
+function res = small_utils_return_phrase_times(element)
     max_separation = 0.25;
     t_onset = [];
     t_offset = [];
