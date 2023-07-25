@@ -1,4 +1,4 @@
-function d = KL_divergence(P,Q,varargin)
+function d = small_utils_KL_divergence(P,Q,varargin)
     dim = 1;
     nparams=length(varargin);
     if mod(nparams,2)>0

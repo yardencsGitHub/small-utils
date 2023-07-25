@@ -1,4 +1,4 @@
-function [filter_sound]=filter_sound_sam(filter_sound)
+function [filter_sound]=small_utils_filter_sound_sam(filter_sound)
 
 % [filter_sound]=filter_sound_sam(filter_sound)
 % Written by Sigal Saar

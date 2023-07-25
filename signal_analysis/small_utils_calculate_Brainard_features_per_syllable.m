@@ -1,4 +1,4 @@
-function feature_elements = calculate_Brainard_features_per_syllable(wav_folder,path_to_annotation_file)
+function feature_elements = small_utils_calculate_Brainard_features_per_syllable(wav_folder,path_to_annotation_file)
 % This script will take an annotation file and use its data structure to extract features for all syllables in a dataset.
 % The annotation file includes the structures:
 % keys - a matlab cell array that holdes the file names (to be processed in

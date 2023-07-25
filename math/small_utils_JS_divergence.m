@@ -1,4 +1,4 @@
-function H = ShannonEnt(p,varargin)
+function d = small_utils_JS_divergence(P,Q,varargin)
     dim = 1;
     nparams=length(varargin);
     if mod(nparams,2)>0
@@ -10,5 +10,6 @@ function H = ShannonEnt(p,varargin)
 		        dim=varargin{i+1};
         end
     end
-    H = -sum(p.*log(p+1e-20),dim)/log(2);
+    M = (P+Q)/2;
+    d = (KL_divergence(P,M,'dim',dim) + KL_divergence(Q,M,'dim',dim))/2;
 end

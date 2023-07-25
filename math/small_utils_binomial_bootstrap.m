@@ -1,4 +1,6 @@
-function [p,h] = binomial_bootstrap(n1,k1,n2,k2,varargin)
+function [p,h] = small_utils_binomial_bootstrap(n1,k1,n2,k2,varargin)
+% performs a bootstrp analysis of a binomial case of k1 1's out of n1
+% samples and k2 1's out of n2 samples
     if (n1 == 1) || (n2 == 1)
         disp('n valueas must be positive');
         p=1;h=0;

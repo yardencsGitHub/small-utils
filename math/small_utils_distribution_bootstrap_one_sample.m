@@ -1,4 +1,4 @@
-function newdists = distribution_bootstrap_one_sample(p_vec,nrep,n_bootstrap)
+function newdists = small_utils_distribution_bootstrap_one_sample(p_vec,nrep,n_bootstrap)
 % This returns n_bootstrap samples from a finite distribution of labels
     p_vec = reshape(p_vec,1,numel(p_vec));
     cump = [0 cumsum(p_vec)]; 

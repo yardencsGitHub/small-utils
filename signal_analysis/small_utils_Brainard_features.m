@@ -1,4 +1,4 @@
-function [features] = Brainard_features(y,fs,varargin)
+function [features] = small_utils_Brainard_features(y,fs,varargin)
 % Will calculate the following features for audio signals with more than
 % 350 samples (~8msec in 44100 Hz sampling rate)
 % will calc amplitude trace by smoothing rectivied signal with 3.1msec

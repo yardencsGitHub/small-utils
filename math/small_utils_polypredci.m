@@ -1,4 +1,4 @@
-function [ p, yhat, ci ] = polypredci( x, y, n, alfa, xv )
+function [ p, yhat, ci ] = small_utils_polypredci( x, y, n, alfa, xv )
 % POLYPREDCI Calculates the prediction intervals for a polynomial
 %            regression produced by ‘polyfit’.
 %
