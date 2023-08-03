@@ -11,5 +11,5 @@ function d = small_utils_JS_divergence(P,Q,varargin)
         end
     end
     M = (P+Q)/2;
-    d = (KL_divergence(P,M,'dim',dim) + KL_divergence(Q,M,'dim',dim))/2;
+    d = (small_utils_KL_divergence(P,M,'dim',dim) + small_utils_KL_divergence(Q,M,'dim',dim))/2;
 end
